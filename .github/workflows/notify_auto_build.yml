@@ -26,6 +26,8 @@ jobs:
             "client_payload" = @{
                 "branch_name" = "${{ github.ref_name }}"
                 "sha_num"     = "${{ github.sha }}"
+                "repo_name"   = "${{ github.repository }}"
+                "run_id"      = "${{ github.run_id }}"
               }
             } | ConvertTo-Json -Compress # Convert the hashtable to a JSON object
 
