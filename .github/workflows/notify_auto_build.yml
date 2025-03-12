@@ -1,6 +1,14 @@
 name: Notify Main Repository
 
 on:
+  pull_request:
+    types:
+      #run the job when pull request opened
+      - opened
+      #run the job when pull request reopened
+      - reopened
+      #run the job on every commit/commits push afer pull request is opened
+      - synchronize
   push:
     branches:
       - main
