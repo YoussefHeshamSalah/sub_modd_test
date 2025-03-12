@@ -22,7 +22,9 @@ jobs:
             }
 
             $body = @{
-              "event_type" = "Auto_Build"
+              "event_type" = "Auto_Build",
+              "branch_name" = "${{ github.event.pull_request.head.ref }}"
+              "sha_num" = "${{ github.event.pull_request.head.sha }}"
             } | ConvertTo-Json -Compress  # Convert the hashtable to a JSON object
 
             # Send the POST request to GitHub API to trigger the workflow
