@@ -16,4 +16,4 @@ jobs:
 
       - name: Trigger update-submodules workflow
         run: |
-          echo main
+          echo sub mod
