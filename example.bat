@@ -1,1 +1,1 @@
-echo batchfilesadlklnjnjnknknk
+echo batchfilesadl
