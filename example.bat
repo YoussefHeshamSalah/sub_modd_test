@@ -1,2 +1,1 @@
-echo batchfilesadlsdsds
-exit 1
+echo batchfile
