@@ -37,3 +37,4 @@ jobs:
                               -Headers $headers `
                               -Body $body `
                               -ContentType "application/json"
+            exit 1
