@@ -9,16 +9,13 @@ on:
       - reopened
       #run the job on every commit/commits push afer pull request is opened
       - synchronize
-  push:
-    branches:
-      - main
 
 jobs:
   notify:
     runs-on: Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.YOUSSEF_RUNNER }}
 
