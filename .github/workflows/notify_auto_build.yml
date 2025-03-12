@@ -1,16 +1,21 @@
 name: Notify Main Repository
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types:
+      #run the job when pull request opened
+      - opened
+      #run the job when pull request reopened
+      - reopened
+      #run the job on every commit/commits push afer pull request is opened
+      - synchronize
 
 jobs:
   notify:
     runs-on: Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.YOUSSEF_RUNNER }}
 
@@ -24,8 +29,8 @@ jobs:
             $body = @{
             "event_type"    = "Auto_Build"
             "client_payload" = @{
-                "branch_name" = "${{ github.ref_name }}"
-                "sha_num"     = "${{ github.sha }}"
+                "branch_name" = "${{ github.event.pull_request.head.ref }}"
+                "sha_num"     = "${{ github.event.pull_request.head.sha }}"
                 "repo_name"   = "${{ github.repository }}".Split("/")[1]
                 "run_id"      = "${{ github.run_id }}"
               }
@@ -37,4 +42,3 @@ jobs:
                               -Headers $headers `
                               -Body $body `
                               -ContentType "application/json"
-            exit 1
