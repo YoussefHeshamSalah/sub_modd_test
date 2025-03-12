@@ -26,7 +26,7 @@ jobs:
             } | ConvertTo-Json -Compress  # Convert the hashtable to a JSON object
 
             # Send the POST request to GitHub API to trigger the workflow
-            Invoke-WebRequest -Uri "https://api.github.com/repos/YoussefHeshamSalah/main/dispatches" `
+            Invoke-WebRequest -Uri "https://api.github.com/repos/YoussefHeshamSalah/test/dispatches" `
                               -Method Post `
                               -Headers $headers `
                               -Body $body `
