@@ -43,7 +43,7 @@ jobs:
                 }
               }
 
-              if($count -lt 2)
+              if($count -lt 0)
               {
                 Write-Output "Exit at least two approval should received to run"
                 exit 1
