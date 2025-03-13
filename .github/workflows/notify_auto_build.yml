@@ -62,6 +62,8 @@ jobs:
                   $(gh pr edit ${{ github.event.pull_request.number }} --remove-label "RUN_AUTOBUILD")
                 }   
              }
+        env:
+          GH_TOKEN: ${{ secrets.YOUSSEF_RUNNER }}  
   notify:
     runs-on: Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
     needs: PR_Approvals_Check
