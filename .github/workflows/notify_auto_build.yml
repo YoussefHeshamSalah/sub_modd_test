@@ -62,8 +62,7 @@ jobs:
                   $(gh pr edit ${{ github.event.pull_request.number }} --remove-label "RUN_AUTOBUILD")
                 }   
              }
-        env:
-          GH_TOKEN: ${{ secrets.YOUSSEF_RUNNER }}  
+
   notify:
     runs-on: Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
     needs: PR_Approvals_Check
@@ -96,7 +95,10 @@ jobs:
                               -Headers $headers `
                               -Body $body `
                               -ContentType "application/json"
-      - name: Set status on submodule PR
+
+      # This step sets the state to "pending" to indicate that the auto-build process is in progress.  
+      # Once the build completes, the status will automatically update to "success" or "failure" based on the outcome.
+      - name: Set status on submodule PR                          
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.YOUSSEF_RUNNER }}
