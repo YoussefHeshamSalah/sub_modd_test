@@ -67,11 +67,6 @@ jobs:
     runs-on: Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
     needs: PR_Approvals_Check
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.YOUSSEF_RUNNER }}
-
       - name: Trigger update-submodules workflow
         run: |
             $headers = @{
@@ -85,7 +80,6 @@ jobs:
                 "branch_name" = "${{ github.event.pull_request.head.ref }}"
                 "sha_num"     = "${{ github.event.pull_request.head.sha }}"
                 "repo_name"   = "${{ github.repository }}".Split("/")[1]
-                "run_id"      = "${{ github.run_id }}"
               }
             } | ConvertTo-Json -Compress # Convert the hashtable to a JSON object
 
