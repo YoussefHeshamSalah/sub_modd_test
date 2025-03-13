@@ -96,3 +96,15 @@ jobs:
                               -Headers $headers `
                               -Body $body `
                               -ContentType "application/json"
+      - name: Set status on submodule PR
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.YOUSSEF_RUNNER }}
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: 'YoussefHeshamSalah',
+              repo: "${{ github.repository }}".Split("/")[1],
+              sha: '${{ github.event.pull_request.head.sha }}',
+              state: "pending",
+            });
+
