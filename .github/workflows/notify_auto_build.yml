@@ -9,10 +9,62 @@ on:
       - reopened
       #run the job on every commit/commits push afer pull request is opened
       - synchronize
+      #run the job when the Pull request labeled
+      - labeled
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
+  PR_Approvals_Check:
+    runs-on: 	Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
+    steps:
+      - name: check_number_of_approves
+        id: PR_Approvals_Check_Step
+        run: |
+            if("${{ github.event.action }}" -eq "synchronize")
+            {
+              # Using github CLI get the latest Reviews state
+              # Check the number of approves if equals or greater than two then run the auto build
+
+              # The following code is a PowerShell code
+              # Get the list of review states for the pull request
+              $ReviewStates = @()
+              $ReviewStates = $(gh pr view ${{ github.event.pull_request.number }} --json latestReviews --jq .[].[].state)
+
+              # Count the number of approvals
+              $count = 0
+
+              foreach($state in $ReviewStates)
+              {
+                if($state -eq "APPROVED")
+                {
+                  $count++
+                }
+              }
+
+              if($count -lt 2)
+              {
+                Write-Output "Exit at least two approval should received to run"
+                exit 1
+              }
+            }
+            
+            if("${{ github.event.action }}" -eq "labeled")
+             {
+                if("${{ github.event.label.name}}" -ne "RUN_AUTOBUILD")
+                {
+                  exit 1
+                }
+                else
+                {
+                  #remove "RUN_AUTOBUILD" label before running the autobuild
+                  $(gh pr edit ${{ github.event.pull_request.number }} --remove-label "RUN_AUTOBUILD")
+                }   
+             }
   notify:
     runs-on: Sub_Runner  # This label added to the "HP-ZBPG8-TEST2" machine for TWI_ORG_RUNNER runner
+    needs: PR_Approvals_Check
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
