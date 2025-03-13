@@ -101,9 +101,11 @@ jobs:
         with:
           github-token: ${{ secrets.YOUSSEF_RUNNER }}
           script: |
+            const repoFullName = "${{ github.repository }}";
+            const [owner, repo] = repoFullName.split("/");
             await github.rest.repos.createCommitStatus({
-              owner: 'YoussefHeshamSalah',
-              repo: "${{ github.repository }}".Split("/")[1],
+              owner: owner,
+              repo: repo,
               sha: '${{ github.event.pull_request.head.sha }}',
               state: "pending",
             });
