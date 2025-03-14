@@ -1,2 +1,2 @@
-echo jkklklklklklklklklkl
+echo uuuuuuuuuuuuuuuuuuuuuuuu
 exit 1
