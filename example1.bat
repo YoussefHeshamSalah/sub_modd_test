@@ -1,2 +1,1 @@
-echo vvvvvvvvvvvv
-exit 1
+echo ttttttttttttttttttttttttt
