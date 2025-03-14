@@ -1,2 +1,2 @@
-echo ssssssssssssssssss
+echo yyyyyyyyyyy
 exit 1
