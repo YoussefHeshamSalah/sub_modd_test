@@ -1,2 +1,2 @@
-echo uuuuuuuuuuuuuuuuuuuuuuuu
+echo tttttttttttt
 exit 1
