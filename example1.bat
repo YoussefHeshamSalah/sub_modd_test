@@ -1,2 +1,2 @@
-echo pppppppppppppp
+echo nnnnnnnnnnnnnn
 exit 1
