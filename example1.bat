@@ -1,2 +1,2 @@
-echo batfilejjj
+echo fffffffffffffffffffs
 exit 1
