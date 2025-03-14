@@ -1,1 +1,2 @@
-echo batfile
+echo batfilejjj
+exit 1
