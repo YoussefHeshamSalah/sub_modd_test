@@ -1,2 +1,2 @@
-echo ffffffffffffffffff
+echo vvvvvvvvvvvv
 exit 1
