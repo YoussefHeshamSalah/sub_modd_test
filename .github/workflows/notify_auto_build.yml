@@ -12,7 +12,7 @@ on:
       #run the job when the Pull request labeled
       - labeled
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.repository }}-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
