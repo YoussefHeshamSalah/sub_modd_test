@@ -80,7 +80,7 @@ jobs:
                 "branch_name" = "${{ github.event.pull_request.head.ref }}"
                 "sha_num"     = "${{ github.event.pull_request.head.sha }}"
                 "repo_name"   = "${{ github.repository }}".Split("/")[1]
-                "pull_request_name" = ${{ github.event.pull_request.title }}
+                "pull_request_name" = "${{ github.event.pull_request.title }}"
               }
             } | ConvertTo-Json -Compress # Convert the hashtable to a JSON object
 
