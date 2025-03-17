@@ -1,1 +1,2 @@
-echo batchfilesad
+echo batchfiledsd
+exit 1
